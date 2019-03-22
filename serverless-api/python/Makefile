@@ -24,8 +24,8 @@ rasterio:
 
 image:
 	docker build -f Dockerfiles/python3.6 --tag lambda:python3.6 .
-	docker build -f Dockerfiles/imagemagik --tag lambda:rasterio .
-	docker run --name lambda -itd lambda:rasterio
+	docker build -f Dockerfiles/imagemagik --tag imagemagik .
+	docker run --name lambda -itd imagemagik
 	docker cp lambda:/tmp/package.zip package_image.zip
 	docker stop lambda
 	docker rm lambda
