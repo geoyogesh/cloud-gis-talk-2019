@@ -30,7 +30,7 @@
     mapboxgl.accessToken = 'pk.eyJ1IjoiZ2VveW9nZXNoIiwiYSI6ImNpbDFvaGFocjNhbmN1Z20zN2V2ajc1ejIifQ.y1AvSabUgTs0OrQnqiDbOw';
     var map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/light-v9',
+      style: 'mapbox://styles/mapbox/dark-v9',
       zoom: 6,
 center: [-78.024902, 37.926868]
     });
@@ -39,7 +39,7 @@ center: [-78.024902, 37.926868]
     map.addControl(nav, 'top-right');
 
     map.on('load', function () {
-      map.addSource('bonn', {
+      map.addSource('aawdt', {
         'type': 'vector',
         "tiles": ["https://s3.amazonaws.com/vector-tiles-map/tiles/aawdt/{z}/{x}/{y}.pbf"],
         "tolerance": 0
@@ -47,7 +47,7 @@ center: [-78.024902, 37.926868]
 
       map.addLayer({
         "id": "road",
-        "source": "bonn",
+        "source": "aawdt",
         "source-layer": "aawdt",
         "type": "line",
         "paint": {
