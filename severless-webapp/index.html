@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8' />
+  <title></title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.css' rel='stylesheet' />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id='map'></div>
+  <script>
+    // TODO: Add your mapbox token right below!
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZ2VveW9nZXNoIiwiYSI6ImNpbDFvaGFocjNhbmN1Z20zN2V2ajc1ejIifQ.y1AvSabUgTs0OrQnqiDbOw';
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/light-v9',
+      zoom: 6,
+center: [-78.024902, 37.926868]
+    });
+
+    var nav = new mapboxgl.NavigationControl();
+    map.addControl(nav, 'top-right');
+
+    map.on('load', function () {
+      map.addSource('bonn', {
+        'type': 'vector',
+        "tiles": ["https://s3.amazonaws.com/vector-tiles-map/tiles/aawdt/{z}/{x}/{y}.pbf"],
+        "tolerance": 0
+      });
+
+      map.addLayer({
+        "id": "road",
+        "source": "bonn",
+        "source-layer": "aawdt",
+        "type": "line",
+        "paint": {
+            "line-width": 3,
+            'line-color': "#007cbf",
+            "line-opacity": 0.5
+        }
+      });
+    });
+  </script>
+
+</body>
